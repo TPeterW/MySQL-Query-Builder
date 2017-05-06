@@ -11,8 +11,6 @@ public class SQLSubquery {
 		this.query = new SQLQuery();
 	}
 	
-	// TODO: add other commands
-	
 	/***
 	 * Rename the table when returning
 	 * @param newTableName		New table name

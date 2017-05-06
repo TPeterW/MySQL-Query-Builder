@@ -32,6 +32,46 @@ public class SQLCondition {
 	}
 	
 	/***
+	 * Condition first argument
+	 * @param attributeName		First argument in condition
+	 * @return					(Unfinished) condition
+	 */
+	public SQLCondition andAttribute(String attributeName) {
+		builder.append("and `").append(attributeName).append("` ");
+		return this;
+	}
+	
+	/***
+	 * Condition first argument
+	 * @param attributeName		First argument in condition
+	 * @return					(Unfinished) condition
+	 */
+	public SQLCondition andAttribute(char attributeName) {
+		builder.append("and `").append(attributeName).append("` ");
+		return this;
+	}
+	
+	/***
+	 * Condition first argument
+	 * @param attributeName		First argument in condition
+	 * @return					(Unfinished) condition
+	 */
+	public SQLCondition orAttribute(String attributeName) {
+		builder.append("or `").append(attributeName).append("` ");
+		return this;
+	}
+	
+	/***
+	 * Condition first argument
+	 * @param attributeName		First argument in condition
+	 * @return					(Unfinished) condition
+	 */
+	public SQLCondition orAttribute(char attributeName) {
+		builder.append("or `").append(attributeName).append("` ");
+		return this;
+	}
+	
+	/***
 	 * Condition second argument
 	 * @param subquery			Subquery in condition
 	 * @return					condition
@@ -160,9 +200,6 @@ public class SQLCondition {
 	 * @return					condition
 	 */
 	public SQLCondition lessThanOrEqualTo(int attributeValue) { builder.append("<= \"").append(attributeValue).append("\" "); return this; }
-	
-	
-	// TODO:
 	
 	/***
 	 * Return the final condition
