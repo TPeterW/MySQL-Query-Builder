@@ -223,6 +223,6 @@ public class SQLCondition {
 	 * Return the final condition
 	 */
 	public String toString() {
-		return builder.toString();
+		return builder.toString().trim();
 	}
 }
