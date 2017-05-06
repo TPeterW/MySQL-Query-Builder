@@ -2,16 +2,14 @@ package com.tpwang.sql;
 
 import java.util.StringJoiner;
 
-public class SQLSubquery {
-	
-	private SQLQuery query;
+public class SQLSubquery extends SQLQuery {
 	
 	// whether a join statement
 	private boolean isJoinStmt = false;
 	private StringBuilder joinBuilder = null;
 	
 	public SQLSubquery() {
-		this.query = new SQLQuery();
+		super();
 		joinBuilder = new StringBuilder().append(' ');
 	}
 	
@@ -21,8 +19,9 @@ public class SQLSubquery {
 	 * @return				subquery
 	 */
 	public SQLSubquery select(String target) {
-		query.select(target);
+		super.select(target);
 		joinBuilder.append("SELECT ").append(target).append(' ');
+		
 		return this;
 	}
 	
@@ -32,7 +31,7 @@ public class SQLSubquery {
 	 * @return				query
 	 */
 	public SQLSubquery select(String... targets) {
-		query.select(targets);
+		super.select(targets);
 		joinBuilder.append("SELECT ");
 		StringJoiner joiner = new StringJoiner(", ");
 		for (String str : targets)
@@ -47,7 +46,7 @@ public class SQLSubquery {
 	 * @return				subquery
 	 */
 	public SQLSubquery select(char target) {
-		query.select(target);
+		super.select(target);
 		joinBuilder.append("SELECT ").append(target).append(' ');
 		return this;
 	}
@@ -58,7 +57,7 @@ public class SQLSubquery {
 	 * @return				subquery
 	 */
 	public SQLSubquery from(String tableName) {
-		query.from(tableName);
+		super.from(tableName);
 		joinBuilder.append("FROM ").append(tableName).append(' ');
 		return this;
 	}
@@ -69,7 +68,7 @@ public class SQLSubquery {
 	 * @return				query
 	 */
 	public SQLSubquery fromSubquery(String subquery) {
-		query.fromSubquery(subquery);
+		super.fromSubquery(subquery);
 		joinBuilder.append("FROM (").append(subquery).append(") ");
 		return this;
 	}
@@ -80,7 +79,7 @@ public class SQLSubquery {
 	 * @return				query
 	 */
 	public SQLSubquery fromSubquery(SQLSubquery subquery) {
-		query.fromSubquery(subquery);
+		super.fromSubquery(subquery);
 		joinBuilder.append("FROM (").append(subquery.create()).append(") ");
 		return this;
 	}
@@ -91,7 +90,7 @@ public class SQLSubquery {
 	 * @return				subquery
 	 */
 	public SQLSubquery where(String condition) {
-		query.where(condition);
+		super.where(condition);
 		return this;
 	}
 	
@@ -101,7 +100,7 @@ public class SQLSubquery {
 	 * @return				subquery
 	 */
 	public SQLSubquery where(SQLCondition condition) {
-		query.where(condition);
+		super.where(condition);
 		return this;
 	}
 	
@@ -230,7 +229,7 @@ public class SQLSubquery {
 	 * @return				subquery
 	 */
 	public SQLSubquery orderBy(String attributeName, boolean ascending) {
-		query.orderBy(attributeName, ascending);
+		super.orderBy(attributeName, ascending);
 		joinBuilder.append("ORDER BY ").append(attributeName).append(ascending ? " " : " DESC ");
 		return this;
 	}
@@ -242,7 +241,7 @@ public class SQLSubquery {
 	 * @return				subquery
 	 */
 	public SQLSubquery orderBy(char attributeName, boolean ascending) {
-		query.orderBy(attributeName, ascending);
+		super.orderBy(attributeName, ascending);
 		joinBuilder.append("ORDER BY ").append(attributeName).append(ascending ? " " : " DESC ");
 		return this;
 	}
@@ -254,7 +253,7 @@ public class SQLSubquery {
 	 * @return				subquery
 	 */
 	public SQLSubquery groupBy(String attributeName) {
-		query.groupBy(attributeName);
+		super.groupBy(attributeName);
 		joinBuilder.append("GROUP BY ").append(attributeName).append(' ');
 		return this;
 	}
@@ -266,7 +265,7 @@ public class SQLSubquery {
 	 * @return				subquery
 	 */
 	public SQLSubquery groupBy(char attributeName) {
-		query.groupBy(attributeName);
+		super.groupBy(attributeName);
 		joinBuilder.append("GROUP BY ").append(attributeName).append(' ');
 		return this;
 	}
@@ -277,7 +276,7 @@ public class SQLSubquery {
 	 * @return					subquery
 	 */
 	public SQLSubquery as(String newTableName) {
-		// TODO: query
+		super.builder.insert(0, " (").append(") AS ").append(newTableName);
 		joinBuilder.insert(0, " (").append(") AS ").append(newTableName);
 		return this;
 	}
@@ -288,7 +287,7 @@ public class SQLSubquery {
 	 * @return					subquery
 	 */
 	public SQLSubquery as(char newTableName) {
-		// TODO: query
+		super.builder.insert(0, " (").append(") AS ").append(newTableName);
 		joinBuilder.insert(0, " (").append(") AS ").append(newTableName);
 		return this;
 	}
@@ -305,11 +304,9 @@ public class SQLSubquery {
 	 * Return the final subquery
 	 */
 	public String toString() {
-		return isJoinStmt 
+		return (isJoinStmt 
 				? joinBuilder.toString()
-				: (new StringBuilder())
-				.append(query.create())
-				.toString();
+				: super.builder.toString()).trim();
 	}
 	
 }

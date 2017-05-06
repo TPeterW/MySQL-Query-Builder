@@ -4,7 +4,7 @@ import java.util.StringJoiner;
 
 public class SQLQuery {
 	
-	StringBuilder builder;
+	protected StringBuilder builder;
 	
 	/***
 	 * Constructor
@@ -150,7 +150,7 @@ public class SQLQuery {
 	 * Return the final query
 	 */
 	public String toString() {
-		return builder.toString();
+		return builder.toString().trim();
 	}
 }
 
