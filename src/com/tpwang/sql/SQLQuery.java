@@ -54,7 +54,7 @@ public class SQLQuery {
 	 * Return the final query
 	 * @return query
 	 */
-	public String make() {
+	public String create() {
 		return toString();
 	}
 	

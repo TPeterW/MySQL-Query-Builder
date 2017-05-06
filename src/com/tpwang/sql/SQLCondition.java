@@ -17,7 +17,7 @@ public class SQLCondition {
 	 * @return					(Unfinished) condition
 	 */
 	public SQLCondition whereAttribute(String attributeName) {
-		builder.append('`').append(attributeName).append('`');
+		builder.append('`').append(attributeName).append("` ");
 		return this;
 	}
 	
@@ -27,45 +27,148 @@ public class SQLCondition {
 	 * @return					(Unfinished) condition
 	 */
 	public SQLCondition whereAttribute(char attributeName) {
-		builder.append('`').append(attributeName).append('`');
+		builder.append('`').append(attributeName).append("` ");
 		return this;
 	}
 	
 	/***
 	 * Condition second argument
-	 * @param attributeValue	Second argument/subquery in condition 
+	 * @param subquery			Subquery in condition
 	 * @return					condition
 	 */
-	public SQLCondition equalsTo(String attributeValue) {
-		builder.append("=\"").append(attributeValue).append("\"");
+	public SQLCondition equalsToSubquery(SQLSubquery subquery) {
+		builder.append("= (").append(subquery.create()).append(") ");
 		return this;
 	}
 	
 	/***
 	 * Condition second argument
-	 * @param attributeValue	Second argument/subquery in condition 
+	 * @param subquery			Subquery in which the target is
 	 * @return					condition
 	 */
-	public SQLCondition equalsTo(char attributeValue) {
-		builder.append("=\"").append(attributeValue).append("\"");
+	public SQLCondition inSubquery(SQLSubquery subquery) {
+		builder.append("in (").append(subquery.create()).append(") ");
 		return this;
 	}
 	
+	//-- Equals --//
 	/***
 	 * Condition second argument
-	 * @param attributeValue	Second argument/subquery in condition 
+	 * @param attributeValue	Second argument in condition 
 	 * @return					condition
 	 */
-	public SQLCondition equalsTo(int attributeValue) {
-		builder.append("=\"").append(attributeValue).append("\"");
-		return this;
-	}
+	public SQLCondition equalsTo(String attributeValue) { builder.append("= \"").append(attributeValue).append("\" "); return this; }
+	
+	/***
+	 * Condition second argument
+	 * @param attributeValue	Second argument in condition 
+	 * @return					condition
+	 */
+	public SQLCondition equalsTo(char attributeValue) { builder.append("= \"").append(attributeValue).append("\" "); return this; }
+	
+	/***
+	 * Condition second argument
+	 * @param attributeValue	Second argument in condition 
+	 * @return					condition
+	 */
+	public SQLCondition equalsTo(int attributeValue) { builder.append("= \"").append(attributeValue).append("\" "); return this; }
+	
+	//-- Larger than --//
+	/***
+	 * Condition second argument
+	 * @param attributeValue	Second argument in condition 
+	 * @return					condition
+	 */
+	public SQLCondition largerThan(String attributeValue) { builder.append("> \"").append(attributeValue).append("\" "); return this; }
+	
+	/***
+	 * Condition second argument
+	 * @param attributeValue	Second argument in condition 
+	 * @return					condition
+	 */
+	public SQLCondition largerThan(char attributeValue) { builder.append("> \"").append(attributeValue).append("\" "); return this; }
+	
+	/***
+	 * Condition second argument
+	 * @param attributeValue	Second argument in condition 
+	 * @return					condition
+	 */
+	public SQLCondition largerThan(int attributeValue) { builder.append("> \"").append(attributeValue).append("\" "); return this; }
+	
+	//-- Less than --//
+	/***
+	 * Condition second argument
+	 * @param attributeValue	Second argument in condition 
+	 * @return					condition
+	 */
+	public SQLCondition lessThan(String attributeValue) { builder.append("< \"").append(attributeValue).append("\" "); return this; }
+	
+	/***
+	 * Condition second argument
+	 * @param attributeValue	Second argument in condition 
+	 * @return					condition
+	 */
+	public SQLCondition lessThan(char attributeValue) { builder.append("< \"").append(attributeValue).append("\" "); return this; }
+	
+	/***
+	 * Condition second argument
+	 * @param attributeValue	Second argument in condition 
+	 * @return					condition
+	 */
+	public SQLCondition lessThan(int attributeValue) { builder.append("< \"").append(attributeValue).append("\" "); return this; }
+
+	//-- Larger than or equal to --//
+	/***
+	 * Condition second argument
+	 * @param attributeValue	Second argument in condition 
+	 * @return					condition
+	 */
+	public SQLCondition largerThanOrEqualTo(String attributeValue) { builder.append(">= \"").append(attributeValue).append("\" "); return this; }
+	
+	/***
+	 * Condition second argument
+	 * @param attributeValue	Second argument in condition 
+	 * @return					condition
+	 */
+	public SQLCondition largerThanOrEqualTo(char attributeValue) { builder.append(">= \"").append(attributeValue).append("\" "); return this; }
+	
+	/***
+	 * Condition second argument
+	 * @param attributeValue	Second argument in condition 
+	 * @return					condition
+	 */
+	public SQLCondition largerThanOrEqualTo(int attributeValue) { builder.append(">= \"").append(attributeValue).append("\" "); return this; }
+	
+	//-- Less than or equal to --//
+	/***
+	 * Condition second argument
+	 * @param attributeValue	Second argument in condition 
+	 * @return					condition
+	 */
+	public SQLCondition lessThanOrEqualTo(String attributeValue) { builder.append("<= \"").append(attributeValue).append("\" "); return this; }
+	
+	/***
+	 * Condition second argument
+	 * @param attributeValue	Second argument in condition 
+	 * @return					condition
+	 */
+	public SQLCondition lessThanOrEqualTo(char attributeValue) { builder.append("<= \"").append(attributeValue).append("\" "); return this; }
+	
+	/***
+	 * Condition second argument
+	 * @param attributeValue	Second argument in condition 
+	 * @return					condition
+	 */
+	public SQLCondition lessThanOrEqualTo(int attributeValue) { builder.append("<= \"").append(attributeValue).append("\" "); return this; }
+	
+	
+	// TODO:
 	
 	/***
 	 * Return the final condition
 	 * @return condition
 	 */
-	public String make() {
+	public String create() {
 		return toString();
 	}
 	
