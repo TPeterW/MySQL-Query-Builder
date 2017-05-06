@@ -18,6 +18,7 @@ public class SQLSubquery extends SQLQuery {
 	 * @param target		Selection target from table
 	 * @return				subquery
 	 */
+	@Override
 	public SQLSubquery select(String target) {
 		super.select(target);
 		joinBuilder.append("SELECT ").append(target).append(' ');
@@ -30,6 +31,7 @@ public class SQLSubquery extends SQLQuery {
 	 * @param target		Selection targets from table
 	 * @return				query
 	 */
+	@Override
 	public SQLSubquery select(String... targets) {
 		super.select(targets);
 		joinBuilder.append("SELECT ");
@@ -45,6 +47,7 @@ public class SQLSubquery extends SQLQuery {
 	 * @param target		Selection target from table
 	 * @return				subquery
 	 */
+	@Override
 	public SQLSubquery select(char target) {
 		super.select(target);
 		joinBuilder.append("SELECT ").append(target).append(' ');
@@ -56,6 +59,7 @@ public class SQLSubquery extends SQLQuery {
 	 * @param tableName		Selection destination/subquery
 	 * @return				subquery
 	 */
+	@Override
 	public SQLSubquery from(String tableName) {
 		super.from(tableName);
 		joinBuilder.append("FROM ").append(tableName).append(' ');
@@ -67,6 +71,7 @@ public class SQLSubquery extends SQLQuery {
 	 * @param subquery		Selection destination (subquery)
 	 * @return				query
 	 */
+	@Override
 	public SQLSubquery fromSubquery(String subquery) {
 		super.fromSubquery(subquery);
 		joinBuilder.append("FROM (").append(subquery).append(") ");
@@ -78,6 +83,7 @@ public class SQLSubquery extends SQLQuery {
 	 * @param subquery		Selection destination (subquery)
 	 * @return				query
 	 */
+	@Override
 	public SQLSubquery fromSubquery(SQLSubquery subquery) {
 		super.fromSubquery(subquery);
 		joinBuilder.append("FROM (").append(subquery.create()).append(") ");
@@ -89,6 +95,7 @@ public class SQLSubquery extends SQLQuery {
 	 * @param condition		Selection condition (manual or from Attribute)
 	 * @return				subquery
 	 */
+	@Override
 	public SQLSubquery where(String condition) {
 		super.where(condition);
 		return this;
@@ -99,6 +106,7 @@ public class SQLSubquery extends SQLQuery {
 	 * @param condition		Selection condition (manual or from Attribute)
 	 * @return				subquery
 	 */
+	@Override
 	public SQLSubquery where(SQLCondition condition) {
 		super.where(condition);
 		return this;
@@ -228,6 +236,7 @@ public class SQLSubquery extends SQLQuery {
 	 * @param ascending		order direction
 	 * @return				subquery
 	 */
+	@Override
 	public SQLSubquery orderBy(String attributeName, boolean ascending) {
 		super.orderBy(attributeName, ascending);
 		joinBuilder.append("ORDER BY ").append(attributeName).append(ascending ? " " : " DESC ");
@@ -240,6 +249,7 @@ public class SQLSubquery extends SQLQuery {
 	 * @param ascending		order direction
 	 * @return				subquery
 	 */
+	@Override
 	public SQLSubquery orderBy(char attributeName, boolean ascending) {
 		super.orderBy(attributeName, ascending);
 		joinBuilder.append("ORDER BY ").append(attributeName).append(ascending ? " " : " DESC ");
@@ -252,6 +262,7 @@ public class SQLSubquery extends SQLQuery {
 	 * @param ascending		order direction
 	 * @return				subquery
 	 */
+	@Override
 	public SQLSubquery groupBy(String attributeName) {
 		super.groupBy(attributeName);
 		joinBuilder.append("GROUP BY ").append(attributeName).append(' ');
@@ -264,6 +275,7 @@ public class SQLSubquery extends SQLQuery {
 	 * @param ascending		order direction
 	 * @return				subquery
 	 */
+	@Override
 	public SQLSubquery groupBy(char attributeName) {
 		super.groupBy(attributeName);
 		joinBuilder.append("GROUP BY ").append(attributeName).append(' ');
@@ -296,6 +308,7 @@ public class SQLSubquery extends SQLQuery {
 	 * Return the final query
 	 * @return query
 	 */
+	@Override
 	public String create() {
 		return toString();
 	}
@@ -303,6 +316,7 @@ public class SQLSubquery extends SQLQuery {
 	/***
 	 * Return the final subquery
 	 */
+	@Override
 	public String toString() {
 		return (isJoinStmt 
 				? joinBuilder.toString()
