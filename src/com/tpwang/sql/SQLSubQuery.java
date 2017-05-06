@@ -221,7 +221,7 @@ public class SQLSubquery {
 	 * @return				subquery
 	 */
 	public SQLSubquery onAttribute(String tableName, String attributeName) {
-		joinBuilder.append("ON ").append('`').append(tableName).append('.').append(attributeName).append("` ");
+		joinBuilder.append("ON ").append(tableName).append('.').append(attributeName).append(' ');
 		return this;
 	}
 	

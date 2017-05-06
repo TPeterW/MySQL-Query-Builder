@@ -17,7 +17,7 @@ public class SQLCondition {
 	 * @return					(Unfinished) condition
 	 */
 	public SQLCondition whereAttribute(String attributeName) {
-		builder.append('`').append(attributeName).append("` ");
+		builder.append(attributeName).append(' ');
 		return this;
 	}
 	
@@ -27,7 +27,7 @@ public class SQLCondition {
 	 * @return					(Unfinished) condition
 	 */
 	public SQLCondition whereAttribute(char attributeName) {
-		builder.append('`').append(attributeName).append("` ");
+		builder.append(attributeName).append(' ');
 		return this;
 	}
 	
@@ -37,7 +37,7 @@ public class SQLCondition {
 	 * @return					(Unfinished) condition
 	 */
 	public SQLCondition andAttribute(String attributeName) {
-		builder.append("AND `").append(attributeName).append("` ");
+		builder.append("AND ").append(attributeName).append(' ');
 		return this;
 	}
 	
@@ -47,7 +47,7 @@ public class SQLCondition {
 	 * @return					(Unfinished) condition
 	 */
 	public SQLCondition andAttribute(char attributeName) {
-		builder.append("AND `").append(attributeName).append("` ");
+		builder.append("AND ").append(attributeName).append(' ');
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class SQLCondition {
 	 * @return					(Unfinished) condition
 	 */
 	public SQLCondition orAttribute(String attributeName) {
-		builder.append("OR `").append(attributeName).append("` ");
+		builder.append("OR ").append(attributeName).append(' ');
 		return this;
 	}
 	
@@ -67,7 +67,7 @@ public class SQLCondition {
 	 * @return					(Unfinished) condition
 	 */
 	public SQLCondition orAttribute(char attributeName) {
-		builder.append("OR `").append(attributeName).append("` ");
+		builder.append("OR ").append(attributeName).append(' ');
 		return this;
 	}
 	
