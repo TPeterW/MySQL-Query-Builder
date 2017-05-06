@@ -94,6 +94,8 @@ public class SQLQuery {
 		return this;
 	}
 	
+	// TODO: order by, group by
+	
 	/***
 	 * Return the final query
 	 * @return query

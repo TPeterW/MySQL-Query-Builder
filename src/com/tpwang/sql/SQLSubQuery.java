@@ -145,7 +145,73 @@ public class SQLSubquery {
 	 */
 	public SQLSubquery joinsTable(SQLSubquery targetTableSubquery) {
 		isJoinStmt = true;
-		joinBuilder.append(targetTableSubquery.create()).append(' ');
+		joinBuilder.append("JOIN ").append(targetTableSubquery.create()).append(' ');
+		return this;
+	}
+	
+	/***
+	 * What to left join to
+	 * @param tableName		Join table right
+	 * @return				subquery
+	 */
+	public SQLSubquery leftJoinsTable(String targetTableName) {
+		isJoinStmt = true;
+		joinBuilder.append("LEFT JOIN ").append(targetTableName).append(' ');
+		return this;
+	}
+	
+	/***
+	 * What to left join to
+	 * @param tableName		Join table right
+	 * @return				subquery
+	 */
+	public SQLSubquery leftJoinsTable(SQLSubquery targetTableSubquery) {
+		isJoinStmt = true;
+		joinBuilder.append("LEFT JOIN ").append(targetTableSubquery.create()).append(' ');
+		return this;
+	}
+	
+	/***
+	 * What to right join to
+	 * @param tableName		Join table right
+	 * @return				subquery
+	 */
+	public SQLSubquery rightJoinsTable(String targetTableName) {
+		isJoinStmt = true;
+		joinBuilder.append("RIGHT JOIN ").append(targetTableName).append(' ');
+		return this;
+	}
+	
+	/***
+	 * What to right join to
+	 * @param tableName		Join table right
+	 * @return				subquery
+	 */
+	public SQLSubquery rightJoinsTable(SQLSubquery targetTableSubquery) {
+		isJoinStmt = true;
+		joinBuilder.append("RIGHT JOIN ").append(targetTableSubquery.create()).append(' ');
+		return this;
+	}
+	
+	/***
+	 * What to outer join to
+	 * @param tableName		Join table right
+	 * @return				subquery
+	 */
+	public SQLSubquery outerJoinsTable(String targetTableName) {
+		isJoinStmt = true;
+		joinBuilder.append("OUTER JOIN ").append(targetTableName).append(' ');
+		return this;
+	}
+	
+	/***
+	 * What to outer join to
+	 * @param tableName		Join table right
+	 * @return				subquery
+	 */
+	public SQLSubquery outerJoinsTable(SQLSubquery targetTableSubquery) {
+		isJoinStmt = true;
+		joinBuilder.append("OUTER JOIN ").append(targetTableSubquery.create()).append(' ');
 		return this;
 	}
 	
