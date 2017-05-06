@@ -1,5 +1,7 @@
 package com.tpwang.sql;
 
+import java.util.StringJoiner;
+
 public class SQLQuery {
 	
 	StringBuilder builder;
@@ -28,10 +30,10 @@ public class SQLQuery {
 	 */
 	public SQLQuery select(String... targets) {
 		builder.append("SELECT ");
-		for (String str : targets) {
-			builder.append(str);
-		}
-		builder.append(' ');
+		StringJoiner joiner = new StringJoiner(", ");
+		for (String str : targets)
+			joiner.add(str);
+		builder.append(joiner.toString()).append(' ');
 		return this;
 	}
 	
@@ -101,7 +103,7 @@ public class SQLQuery {
 	 * @return				query
 	 */
 	public SQLQuery orderBy(String attributeName, boolean ascending) {
-		builder.append("ORDER BY ").append(attributeName).append(ascending ? " " : "DESC ");
+		builder.append("ORDER BY ").append(attributeName).append(ascending ? " " : " DESC ");
 		return this;
 	}
 	
@@ -112,7 +114,7 @@ public class SQLQuery {
 	 * @return				query
 	 */
 	public SQLQuery orderBy(char attributeName, boolean ascending) {
-		builder.append("ORDER BY ").append(attributeName).append(ascending ? " " : "DESC ");
+		builder.append("ORDER BY ").append(attributeName).append(ascending ? " " : " DESC ");
 		return this;
 	}
 	
