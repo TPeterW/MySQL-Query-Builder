@@ -37,7 +37,7 @@ public class SQLCondition {
 	 * @return					(Unfinished) condition
 	 */
 	public SQLCondition andAttribute(String attributeName) {
-		builder.append("and `").append(attributeName).append("` ");
+		builder.append("AND `").append(attributeName).append("` ");
 		return this;
 	}
 	
@@ -47,7 +47,7 @@ public class SQLCondition {
 	 * @return					(Unfinished) condition
 	 */
 	public SQLCondition andAttribute(char attributeName) {
-		builder.append("and `").append(attributeName).append("` ");
+		builder.append("AND `").append(attributeName).append("` ");
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class SQLCondition {
 	 * @return					(Unfinished) condition
 	 */
 	public SQLCondition orAttribute(String attributeName) {
-		builder.append("or `").append(attributeName).append("` ");
+		builder.append("OR `").append(attributeName).append("` ");
 		return this;
 	}
 	
@@ -67,7 +67,7 @@ public class SQLCondition {
 	 * @return					(Unfinished) condition
 	 */
 	public SQLCondition orAttribute(char attributeName) {
-		builder.append("or `").append(attributeName).append("` ");
+		builder.append("OR `").append(attributeName).append("` ");
 		return this;
 	}
 	
@@ -87,7 +87,17 @@ public class SQLCondition {
 	 * @return					condition
 	 */
 	public SQLCondition inSubquery(SQLSubquery subquery) {
-		builder.append("in (").append(subquery.create()).append(") ");
+		builder.append("IN (").append(subquery.create()).append(") ");
+		return this;
+	}
+	
+	/***
+	 * Condition second argument
+	 * @param subquery			Subquery in which the target is
+	 * @return					condition
+	 */
+	public SQLCondition notInSubquery(SQLSubquery subquery) {
+		builder.append("NOT IN (").append(subquery.create()).append(") ");
 		return this;
 	}
 	

@@ -51,6 +51,16 @@ public class SQLQuery {
 	}
 	
 	/***
+	 * How to query
+	 * @param condition		Selection condition (manual or from Attribute)
+	 * @return				builder
+	 */
+	public SQLQuery where(SQLCondition condition) {
+		builder.append("WHERE ").append(condition.create()).append(' ');
+		return this;
+	}
+	
+	/***
 	 * Return the final query
 	 * @return query
 	 */
