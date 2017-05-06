@@ -123,7 +123,7 @@ public class SQLSubquery {
 	 * @return				subquery
 	 */
 	public SQLSubquery whereTable(SQLSubquery tableSubquery) {
-		joinBuilder.append("( ").append(tableSubquery.create()).append(") ");
+		joinBuilder.append("(").append(tableSubquery.create()).append(") ");
 		return this;
 	}
 	
