@@ -94,7 +94,47 @@ public class SQLQuery {
 		return this;
 	}
 	
-	// TODO: order by, group by
+	/***
+	 * How to order
+	 * @param attributeName	Selection ordering
+	 * @param ascending		order direction
+	 * @return				query
+	 */
+	public SQLQuery orderBy(String attributeName, boolean ascending) {
+		builder.append("ORDER BY ").append(attributeName).append(ascending ? " " : "DESC ");
+		return this;
+	}
+	
+	/***
+	 * How to order
+	 * @param attributeName	Selection ordering
+	 * @param ascending		order direction
+	 * @return				query
+	 */
+	public SQLQuery orderBy(char attributeName, boolean ascending) {
+		builder.append("ORDER BY ").append(attributeName).append(ascending ? " " : "DESC ");
+		return this;
+	}
+	
+	/***
+	 * How to group
+	 * @param attributeName	Selection grouping
+	 * @return				query
+	 */
+	public SQLQuery groupBy(char attributeName) {
+		builder.append("GROUP BY ").append(attributeName).append(' ');
+		return this;
+	}
+	
+	/***
+	 * How to group
+	 * @param attributeName	Selection grouping
+	 * @return				query
+	 */
+	public SQLQuery groupBy(String attributeName) {
+		builder.append("GROUP BY ").append(attributeName).append(' ');
+		return this;
+	}
 	
 	/***
 	 * Return the final query

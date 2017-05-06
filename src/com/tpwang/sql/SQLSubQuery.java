@@ -226,6 +226,54 @@ public class SQLSubquery {
 	}
 	
 	/***
+	 * How to order
+	 * @param attributeName	Selection ordering
+	 * @param ascending		order direction
+	 * @return				subquery
+	 */
+	public SQLSubquery orderBy(String attributeName, boolean ascending) {
+		query.orderBy(attributeName, ascending);
+		joinBuilder.append("ORDER BY ").append(attributeName).append(ascending ? " " : "DESC ");
+		return this;
+	}
+	
+	/***
+	 * How to order
+	 * @param attributeName	Selection ordering
+	 * @param ascending		order direction
+	 * @return				subquery
+	 */
+	public SQLSubquery orderBy(char attributeName, boolean ascending) {
+		query.orderBy(attributeName, ascending);
+		joinBuilder.append("ORDER BY ").append(attributeName).append(ascending ? " " : "DESC ");
+		return this;
+	}
+	
+	/***
+	 * How to group
+	 * @param attributeName	Selection grouping
+	 * @param ascending		order direction
+	 * @return				subquery
+	 */
+	public SQLSubquery groupBy(String attributeName) {
+		query.groupBy(attributeName);
+		joinBuilder.append("GROUP BY ").append(attributeName).append(' ');
+		return this;
+	}
+	
+	/***
+	 * How to group
+	 * @param attributeName	Selection grouping
+	 * @param ascending		order direction
+	 * @return				subquery
+	 */
+	public SQLSubquery groupBy(char attributeName) {
+		query.groupBy(attributeName);
+		joinBuilder.append("GROUP BY ").append(attributeName).append(' ');
+		return this;
+	}
+	
+	/***
 	 * Rename the table when returning
 	 * @param newTableName		New table name
 	 * @return					subquery
