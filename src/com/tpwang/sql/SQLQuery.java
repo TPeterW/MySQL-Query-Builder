@@ -139,6 +139,15 @@ public class SQLQuery {
 	}
 	
 	/***
+	 * Reset query
+	 * @return				query
+	 */
+	public SQLQuery clear() {
+		builder = new StringBuilder();
+		return this;
+	}
+	
+	/***
 	 * Return the final query
 	 * @return query
 	 */

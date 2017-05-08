@@ -212,6 +212,15 @@ public class SQLCondition {
 	public SQLCondition lessThanOrEqualTo(int attributeValue) { builder.append("<= \"").append(attributeValue).append("\" "); return this; }
 	
 	/***
+	 * Reset condition
+	 * @return				condition
+	 */
+	public SQLCondition clear() {
+		builder = new StringBuilder();
+		return this;
+	}
+	
+	/***
 	 * Return the final condition
 	 * @return condition
 	 */
