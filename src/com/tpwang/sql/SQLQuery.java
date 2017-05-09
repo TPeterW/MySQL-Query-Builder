@@ -13,6 +13,8 @@ public class SQLQuery {
 		builder = new StringBuilder().append(' ');
 	}
 	
+	/* Select */
+	
 	/***
 	 * What to query
 	 * @param target		Selection target from table
@@ -149,7 +151,7 @@ public class SQLQuery {
 	
 	/***
 	 * Return the final query
-	 * @return query
+	 * @return 				query string
 	 */
 	public String create() {
 		return toString();

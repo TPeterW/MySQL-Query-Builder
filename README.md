@@ -37,8 +37,15 @@ Usage
 			.groupBy("author_id")
 			.orderBy("status", false)
 			.create();
-	
+				
+	String insert1 = new SQLInsertion()
+			.intoTable("rihelper")
+			.intoColumns("reviewer_id", "ricode_id")
+			.withValues("123456", "111111")
+			.withValues("234567", "222222")
+			.create();
+
 	stmt.executeQuery(new SQLQuery()
-				.select('*')
-				.from("manuscript")
-				.create());
+			.select('*')
+			.from("manuscript")
+			.create());

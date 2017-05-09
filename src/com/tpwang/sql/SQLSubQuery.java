@@ -308,6 +308,7 @@ public class SQLSubquery extends SQLQuery {
 	 * Reset query
 	 * @return				query
 	 */
+	@Override
 	public SQLSubquery clear() {
 		super.clear();
 		joinBuilder = new StringBuilder();
