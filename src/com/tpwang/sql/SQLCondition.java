@@ -231,6 +231,7 @@ public class SQLCondition {
 	/***
 	 * Return the final condition
 	 */
+	@Override
 	public String toString() {
 		return builder.toString().trim();
 	}

@@ -160,6 +160,7 @@ public class SQLQuery {
 	/***
 	 * Return the final query
 	 */
+	@Override
 	public String toString() {
 		return builder.toString().trim();
 	}
