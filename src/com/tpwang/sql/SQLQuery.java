@@ -145,7 +145,7 @@ public class SQLQuery {
 	 * @return				query
 	 */
 	public SQLQuery clear() {
-		builder = new StringBuilder();
+		builder = new StringBuilder().append(' ');
 		return this;
 	}
 	

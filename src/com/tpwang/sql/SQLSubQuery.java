@@ -311,7 +311,7 @@ public class SQLSubquery extends SQLQuery {
 	@Override
 	public SQLSubquery clear() {
 		super.clear();
-		joinBuilder = new StringBuilder();
+		joinBuilder = new StringBuilder().append(' ');
 		return this;
 	}
 	

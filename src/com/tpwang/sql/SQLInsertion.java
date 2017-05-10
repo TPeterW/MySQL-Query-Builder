@@ -87,8 +87,18 @@ public class SQLInsertion {
 	}
 	
 	/***
+	 * Reset insert
+	 * @return				insert
+	 */
+	public SQLInsertion clear() {
+		builder = new StringBuilder().append("INSERT ");
+		joiner = null;
+		return this;
+	}
+	
+	/***
 	 * Return the final query
-	 * @return 				query string
+	 * @return 				insert string
 	 */
 	public String create() {
 		return toString();

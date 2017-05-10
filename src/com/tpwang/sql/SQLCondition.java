@@ -216,7 +216,7 @@ public class SQLCondition {
 	 * @return				condition
 	 */
 	public SQLCondition clear() {
-		builder = new StringBuilder();
+		builder = new StringBuilder().append(' ');
 		return this;
 	}
 	
