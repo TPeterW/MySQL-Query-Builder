@@ -45,6 +45,15 @@ Usage
 			.withValues("234567", "222222")
 			.create();
 
+	String update1 = new SQLUpdate()
+			.updateTable("author")
+			.setAttributeTo("email", "dummy_email@hotmail.com")
+			.setAttributeTo("affiliation", 1)
+			.where(new SQLCondition()
+				.whereAttribute("author_id")
+				.equalsTo(123456))
+			.create();
+
 	stmt.executeQuery(new SQLQuery()
 			.select('*')
 			.from("manuscript")
