@@ -54,6 +54,13 @@ Usage
 				.equalsTo(123456))
 			.create();
 
+	String delete1 = new SQLDelete()
+			.fromTable("manuscript")
+			.where(new SQLCondition()
+				.whereAttribute("author_id")
+				.equalsTo("123456"))
+			.create();
+
 	stmt.executeQuery(new SQLQuery()
 			.select('*')
 			.from("manuscript")

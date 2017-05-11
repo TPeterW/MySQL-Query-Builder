@@ -119,7 +119,7 @@ public class SQLUpdate {
 	public String toString() {
 		return builder.append("SET ").append(joiner.toString()).append(' ')
 					.append("WHERE ").append(condition)
-					.toString();
+					.toString().trim();
 	}
 	
 }
