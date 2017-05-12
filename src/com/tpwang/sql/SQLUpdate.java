@@ -3,6 +3,8 @@ package com.tpwang.sql;
 import java.util.StringJoiner;
 
 public class SQLUpdate {
+	
+	public static enum FUNC { NOW };
 
 	private StringBuilder builder = null;		// main builder
 	private StringJoiner joiner = null;			// set joiner
@@ -34,7 +36,7 @@ public class SQLUpdate {
 	 */
 	public SQLUpdate setAttributeTo(String attributeName, String value) {
 		joiner.add(new StringBuilder()
-					.append(attributeName).append(" = ").append(value).toString());
+					.append(attributeName).append(" = ").append('"').append(value).append('"').toString());
 		return this;
 	}
 	
@@ -46,7 +48,7 @@ public class SQLUpdate {
 	 */
 	public SQLUpdate setAttributeTo(String attributeName, int value) {
 		joiner.add(new StringBuilder()
-					.append(attributeName).append(" = ").append(value).toString());
+					.append(attributeName).append(" = ").append('"').append(value).append('"').toString());
 		return this;
 	}
 	
@@ -58,7 +60,7 @@ public class SQLUpdate {
 	 */
 	public SQLUpdate setAttributeTo(String attributeName, char value) {
 		joiner.add(new StringBuilder()
-					.append(attributeName).append(" = ").append(value).toString());
+					.append(attributeName).append(" = ").append('"').append(value).append('"').toString());
 		return this;
 	}
 	
@@ -71,6 +73,12 @@ public class SQLUpdate {
 	public SQLUpdate setAttributeTo(String attributeName, boolean value) {
 		joiner.add(new StringBuilder()
 					.append(attributeName).append(" = ").append(value ? "TRUE" : "FALSE").toString());
+		return this;
+	}
+	
+	public SQLUpdate setAttributeTo(String attributeName, FUNC func) {
+		joiner.add(new StringBuilder()
+					.append(attributeName).append(" = ").append(func).append("()").toString());
 		return this;
 	}
 	
@@ -118,7 +126,7 @@ public class SQLUpdate {
 	@Override
 	public String toString() {
 		return builder.append("SET ").append(joiner.toString()).append(' ')
-					.append("WHERE ").append(condition)
+					.append(condition != null ? "WHERE " : "").append(condition != null ? condition : "")
 					.toString().trim();
 	}
 	
