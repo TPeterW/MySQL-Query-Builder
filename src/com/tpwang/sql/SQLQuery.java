@@ -1,11 +1,11 @@
 package com.tpwang.sql;
 
-import java.util.LinkedHashMap;
 import java.util.StringJoiner;
 
 public class SQLQuery {
 	
-	protected StringBuilder builder;
+	protected StringBuilder builder = null;
+	protected StringJoiner orderJoiner = null;			// ordering
 	
 	/***
 	 * Constructor
@@ -106,7 +106,9 @@ public class SQLQuery {
 	 * @return				query
 	 */
 	public SQLQuery orderBy(String attributeName, boolean ascending) {
-		builder.append("ORDER BY ").append(attributeName).append(ascending ? " " : " DESC ");
+		if (orderJoiner == null)
+			orderJoiner = new StringJoiner(", ");
+		orderJoiner.add(attributeName + (ascending ? "" : " DESC"));
 		return this;
 	}
 	
@@ -117,21 +119,9 @@ public class SQLQuery {
 	 * @return				query
 	 */
 	public SQLQuery orderBy(char attributeName, boolean ascending) {
-		builder.append("ORDER BY ").append(attributeName).append(ascending ? " " : " DESC ");
-		return this;
-	}
-	
-	/***
-	 * How to order
-	 * @param attributes	Selection order criteria
-	 * @return				query
-	 */
-	public SQLQuery orderBy(LinkedHashMap<String, Boolean> attributes) {
-		StringJoiner orderJoiner = new StringJoiner(", ");
-		for (String key : attributes.keySet()) {
-			orderJoiner.add(key + (attributes.get(key) ? "" : " DESC"));
-		}
-		builder.append("ORDER BY ").append(orderJoiner.toString()).append(' ');
+		if (orderJoiner == null)
+			orderJoiner = new StringJoiner(", ");
+		orderJoiner.add(attributeName + (ascending ? "" : " DESC"));;
 		return this;
 	}
 	
@@ -177,7 +167,7 @@ public class SQLQuery {
 	 */
 	@Override
 	public String toString() {
-		return builder.toString().trim();
+		return builder.append(orderJoiner != null ? "ORDER BY " : "").append(orderJoiner != null ? orderJoiner.toString() : "").toString().trim();
 	}
 }
 

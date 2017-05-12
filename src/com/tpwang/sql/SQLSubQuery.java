@@ -1,6 +1,5 @@
 package com.tpwang.sql;
 
-import java.util.LinkedHashMap;
 import java.util.StringJoiner;
 
 public class SQLSubquery extends SQLQuery {
@@ -240,7 +239,6 @@ public class SQLSubquery extends SQLQuery {
 	@Override
 	public SQLSubquery orderBy(String attributeName, boolean ascending) {
 		super.orderBy(attributeName, ascending);
-		joinBuilder.append("ORDER BY ").append(attributeName).append(ascending ? " " : " DESC ");
 		return this;
 	}
 	
@@ -253,23 +251,6 @@ public class SQLSubquery extends SQLQuery {
 	@Override
 	public SQLSubquery orderBy(char attributeName, boolean ascending) {
 		super.orderBy(attributeName, ascending);
-		joinBuilder.append("ORDER BY ").append(attributeName).append(ascending ? " " : " DESC ");
-		return this;
-	}
-	
-	/***
-	 * How to order
-	 * @param attributes	Selection order criteria
-	 * @return				subquery
-	 */
-	@Override
-	public SQLSubquery orderBy(LinkedHashMap<String, Boolean> attributes) {
-		super.orderBy(attributes);
-		StringJoiner orderJoiner = new StringJoiner(", ");
-		for (String key : attributes.keySet()) {
-			orderJoiner.add(key + (attributes.get(key) ? "" : " DESC"));
-		}
-		joinBuilder.append("ORDER BY ").append(orderJoiner.toString()).append(' ');
 		return this;
 	}
 	
@@ -347,7 +328,7 @@ public class SQLSubquery extends SQLQuery {
 	@Override
 	public String toString() {
 		return (isJoinStmt 
-				? joinBuilder.toString()
+				? joinBuilder.append(super.orderJoiner != null ? "ORDER BY " : "").append(super.orderJoiner != null ? orderJoiner.toString() : "").toString()
 				: super.builder.toString()).trim();
 	}
 	

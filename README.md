@@ -31,15 +31,12 @@ Usage
 					.orderBy("pub_year", true)
 			.create();
 
-	// has to be LinkedHashMap to preserve order
-	LinkedHashMap<String, Boolean> order = new LinkedHashMap<String, Boolean>();
-	order.put("status", true);
-	order.put("author_id", false);
 	String query3 = new SQLQuery()
 			.select('*')
 			.from("manuscript")
 			.groupBy("author_id")
-			.orderBy(order)
+			.orderBy("author_id", false)
+			.orderBy("status", true)
 			.create();
 				
 	String insert1 = new SQLInsertion()
