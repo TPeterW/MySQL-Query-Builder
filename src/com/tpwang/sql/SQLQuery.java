@@ -1,5 +1,6 @@
 package com.tpwang.sql;
 
+import java.util.LinkedHashMap;
 import java.util.StringJoiner;
 
 public class SQLQuery {
@@ -117,6 +118,20 @@ public class SQLQuery {
 	 */
 	public SQLQuery orderBy(char attributeName, boolean ascending) {
 		builder.append("ORDER BY ").append(attributeName).append(ascending ? " " : " DESC ");
+		return this;
+	}
+	
+	/***
+	 * How to order
+	 * @param attributes	Selection order criteria
+	 * @return				query
+	 */
+	public SQLQuery orderBy(LinkedHashMap<String, Boolean> attributes) {
+		StringJoiner orderJoiner = new StringJoiner(", ");
+		for (String key : attributes.keySet()) {
+			orderJoiner.add(key + (attributes.get(key) ? "" : " DESC"));
+		}
+		builder.append("ORDER BY ").append(orderJoiner.toString()).append(' ');
 		return this;
 	}
 	

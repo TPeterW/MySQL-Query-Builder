@@ -27,7 +27,7 @@ public class SQLDelete {
 	 * @return					delete
 	 */
 	public SQLDelete where(SQLCondition condition) {
-		builder.append(condition.toString());
+		builder.append("WHERE ").append(condition.toString());
 		return this;
 	}
 	
